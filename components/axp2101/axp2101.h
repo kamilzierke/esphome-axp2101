@@ -20,8 +20,6 @@ class AXP2101Component : public PollingComponent, public i2c::I2CDevice {
   void set_dc_in_current_sensor(sensor::Sensor *sensor) { dc_in_current_sensor_ = sensor; }
   void set_temperature_sensor(sensor::Sensor *sensor) { temperature_sensor_ = sensor; }
 
-  void set_charging_sensor(binary_sensor::BinarySensor *sensor) { charging_sensor_ = sensor; }
-  void set_acin_connected_sensor(binary_sensor::BinarySensor *sensor) { acin_connected_sensor_ = sensor; }
 
  protected:
   sensor::Sensor *battery_voltage_sensor_{nullptr};
@@ -32,8 +30,6 @@ class AXP2101Component : public PollingComponent, public i2c::I2CDevice {
   sensor::Sensor *dc_in_current_sensor_{nullptr};
   sensor::Sensor *temperature_sensor_{nullptr};
 
-  binary_sensor::BinarySensor *charging_sensor_{nullptr};
-  binary_sensor::BinarySensor *acin_connected_sensor_{nullptr};
 };
 
 }  // namespace axp2101
