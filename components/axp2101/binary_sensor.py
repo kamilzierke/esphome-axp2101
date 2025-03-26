@@ -1,7 +1,9 @@
 from esphome.components import binary_sensor
 import esphome.codegen as cg
 import esphome.config_validation as cv
-from esphome.const import CONF_ID, CONF_PARENT_ID
+from esphome.const import CONF_ID
+CONF_PARENT_ID = "parent_id"
+
 
 from . import AXP2101Component
 
