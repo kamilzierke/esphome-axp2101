@@ -1,9 +1,9 @@
 from esphome import automation
-from esphome.components import i2c, sensor, binary_sensor
+from esphome.components import i2c, sensor
 import esphome.codegen as cg
 import esphome.config_validation as cv
 
-DEPENDENCIES = ["i2c", "binary_sensor"]
+DEPENDENCIES = ["i2c"]
 
 from esphome.const import (
     CONF_ID,
@@ -71,8 +71,6 @@ CONFIG_SCHEMA = cv.Schema({
         device_class=DEVICE_CLASS_TEMPERATURE,
         state_class=STATE_CLASS_MEASUREMENT,
     ),
-    cv.Optional("charging"): binary_sensor.binary_sensor_schema(),
-    cv.Optional("acin_connected"): binary_sensor.binary_sensor_schema(),
 }).extend(cv.polling_component_schema("60s")).extend(i2c.i2c_device_schema(0x34))
 
 
@@ -103,8 +101,3 @@ async def to_code(config):
         sens = await sensor.new_sensor(conf)
         cg.add(var.set_temperature_sensor(sens))
     if conf := config.get("charging"):
-        bin_sens = await binary_sensor.new_binary_sensor(conf)
-        cg.add(var.set_charging_sensor(bin_sens))
-    if conf := config.get("acin_connected"):
-        bin_sens = await binary_sensor.new_binary_sensor(conf)
-        cg.add(var.set_acin_connected_sensor(bin_sens))
