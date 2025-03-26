@@ -100,4 +100,3 @@ async def to_code(config):
     if conf := config.get("temperature"):
         sens = await sensor.new_sensor(conf)
         cg.add(var.set_temperature_sensor(sens))
-    if conf := config.get("charging"):
