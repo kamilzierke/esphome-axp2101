@@ -75,17 +75,6 @@ void AXP2101Component::update() {
     this->temperature_sensor_->publish_state(temperature);
   }
 
-  if (this->charging_sensor_ != nullptr) {
-    uint8_t status;
-    this->read_register(REG_STATUS, &status, 1);
-    this->charging_sensor_->publish_state((status & 0x20) != 0);
-  }
-
-  if (this->acin_connected_sensor_ != nullptr) {
-    uint8_t status;
-    this->read_register(REG_STATUS, &status, 1);
-    this->acin_connected_sensor_->publish_state((status & 0x80) != 0);
-  }
 }
 
 }  // namespace axp2101
